@@ -18,7 +18,7 @@ const CATEGORIES = [
 const STEPS_RENTER = [
   { icon: '🔍', num: 1, title: 'Search & Filter', desc: 'Browse by equipment type, location, price, and operator availability across India.' },
   { icon: '📅', num: 2, title: 'Pick Dates', desc: 'View live calendar availability. Blocked dates are shown clearly — pick your range instantly.' },
-  { icon: '✅', num: 3, title: 'Confirm & Go', desc: 'Submit your booking, get the owner's contact, and finalize details directly with them.' },
+  { icon: '✅', num: 3, title: 'Confirm & Go', desc: "Submit your booking, get the owner's contact, and finalize details directly with them." },
 ];
 
 const STEPS_OWNER = [
