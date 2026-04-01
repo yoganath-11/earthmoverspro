@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { initStore } from './data/store';
 import Navbar from './components/Navbar';
@@ -15,7 +15,7 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -33,6 +33,6 @@ export default function App() {
           </div>
         } />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
