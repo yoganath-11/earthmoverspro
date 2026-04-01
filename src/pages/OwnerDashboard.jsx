@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   getAllOwners, addOwner, getEquipmentForOwner, addEquipment,
-  deleteEquipment, getBookingsForOwner, getAllBookings, getEquipmentById
+  deleteEquipment, getAllBookings, getEquipmentById
 } from '../data/store';
 import { EQUIPMENT_TYPES } from '../data/mockData';
 import './OwnerDashboard.css';
@@ -35,6 +35,14 @@ export default function OwnerDashboard() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
+  function loadOwnerData(ownerId) {
+    setListings(getEquipmentForOwner(ownerId));
+    const bks = getAllBookings();
+    const eqs = getEquipmentForOwner(ownerId);
+    const eqIds = new Set(eqs.map(e => e.id));
+    setBookings(bks.filter(b => eqIds.has(b.equipmentId)));
+  }
+
   useEffect(() => {
     const allOwners = getAllOwners();
     setOwners(allOwners);
@@ -45,14 +53,6 @@ export default function OwnerDashboard() {
       if (ow) { setCurrentOwner(ow); loadOwnerData(ow.id); }
     }
   }, []);
-
-  function loadOwnerData(ownerId) {
-    setListings(getEquipmentForOwner(ownerId));
-    const bks = getAllBookings();
-    const eqs = getEquipmentForOwner(ownerId);
-    const eqIds = new Set(eqs.map(e => e.id));
-    setBookings(bks.filter(b => eqIds.has(b.equipmentId)));
-  }
 
   function handleOwnerSetup(e) {
     e.preventDefault();
